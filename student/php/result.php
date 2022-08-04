@@ -87,6 +87,7 @@
    $sql = "SELECT class_students.class,class.user_id,class.id AS class_id FROM class_students INNER JOIN class WHERE class_students.student = '$student_id' AND class.id = class_students.class ORDER BY class_students.id DESC";
 
    $run = $db->query($sql);
+   
    $info = $run->fetch_assoc();
 
    if(!isset($info)){
@@ -207,6 +208,10 @@ $results = [];
 
  $sql = "SELECT SUM(first_test+second_test+exams) AS total,student_id,ROW_NUMBER() OVER(ORDER BY total DESC) position FROM results WHERE term = '$term_id' AND class = '$class_id'GROUP BY student_id";
  $run = $db->query($sql);
+ if(!$run){
+  echo $db->error;
+  exit();
+ }
  while($row = $run->fetch_assoc())$student_result[$row['student_id']] = $row;
 
 
