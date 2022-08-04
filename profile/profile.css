@@ -1,0 +1,242 @@
+*{
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+body {
+    width: 100%;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the side navigation */
+.sidenav {
+    height: 100%;
+    width: 230px;
+    position: fixed;
+    padding: 50px 0;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #f96332;
+    overflow-x: hidden;
+}
+
+
+/* Side navigation links */
+.sidenav a {
+    color: white;
+    /*height: 50px;*/
+    margin: 20px 0;
+    padding: 16px;
+    text-decoration: none;
+    display: block;
+}
+/*admin icon style*/
+.admin-icon{
+    font-size: 25px;
+    color:#f96332 ;
+    margin-right: 10px;
+}
+/*add icon style*/
+.add-icon{
+    font-size: 25px;
+    color:white ;
+    margin-right: 10px;
+}
+#user{
+    border-radius: 50px;
+    background-color: white;
+    color: #f96332;
+}
+/* Change color on hover */
+.sidenav a:hover {
+    background-color: #1c3b5f;
+    /*color: black;*/
+}
+
+.wrapper-container{
+ min-height: 100vh;
+  /*position: fixed;*/
+   margin-left: 230px;
+   background-color:whitesmoke;
+}
+
+/*nav bar*/
+#header{
+    padding: 30px;
+    color: white;
+    background-color: #1c3b5f;
+    margin-bottom: 20px;
+
+}
+/* Style the content */
+.content-container {
+    margin:0 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+
+}
+#card-edit{
+     width: 80%;
+     padding: 10px;
+     background-color: #fff;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 10%), 0 6px 20px 0 rgba(0, 0, 0, 8%);
+}
+#card-edit h1{
+    text-align: center;
+    font-size: 20px;
+    margin: 10px 0;
+}
+#card-edit .card{
+    /*border: 1px solid grey;*/
+    background-color: white;
+    width: 60%;
+    margin: 0px auto;
+    padding: 10px;
+}
+#card-edit label{
+  display: block;
+  margin-left: 10px;
+}
+#card-edit input,select{
+    height: 30px;
+    width: 100%;
+    border-radius: 15px;
+    outline: none;
+    /*background-color: whitesmoke;*/
+    border:1px solid whitesmoke;
+    padding: 5px;
+    margin: 3px 0;
+}
+
+   .card p{
+            width: 50%;
+            float: right;
+            color: red;
+            font-size: 14pt;
+            margin:10px 0px; 
+            font-family:sans-serif;
+          }
+
+#card-edit input:hover,#card-edit input:active{
+    border: 1px solid red;
+}
+
+  #card-edit .card1{
+    /*border: 1px solid black;*/
+    width: 20%;
+    margin: 0 auto;
+    padding: 5px;
+  }
+button{
+    width: 80px;
+    padding: 8px;
+    border-radius: 5px;
+    outline: none;
+    border:2px solid  white;
+    background-color: #1c3b5f;
+    color: white;
+    cursor: pointer;
+    
+}
+
+
+#card-info{
+    height: 450px;
+    width:80%; 
+    padding: 10px;
+    background-color: #fff;
+    cursor:progress;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 10%), 0 6px 20px 0 rgba(0, 0, 0, 8%);
+}
+#card-info h1{
+    text-align: center;
+    margin: 10px 0;
+}
+#card-info #passport{
+    margin: 10px auto;
+    width: 200px;
+    height: 200px;
+    background-image: url("../image/<?=$image?>");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    /*border: 1px solid black;*/
+}
+#card-info #detail{
+    margin:20px 0 ;
+    /*border: 1px solid black;*/
+    text-align: center;
+    padding: 5px;
+}
+#card-info #detail p{
+    font-size: 16px;
+    margin: 3px;
+}
+
+
+.menu-icon{
+    font-size: 2em;
+    float: right;
+}
+
+@media only screen and (max-width: 600px) {
+    .sidenav{
+        display: none;
+    }
+    .wrapper-container{
+        width: 100%;
+       margin-left: 0px;
+    }
+    .content-container{
+        flex-direction: column;
+        align-items: center;
+
+      }
+      #card-edit{
+        margin-top: 30px;
+      }
+      
+      
+    }
+    
+    @media only screen and (min-width:600px) {
+        .sidenav{
+            display: block;
+        }
+        .content-container{
+            flex-direction: column;
+            align-items: center;
+        }
+        .wrapper-container{
+            min-height: 100vh;
+            margin-left: 230px;
+         
+         }
+         .menu-icon{
+             display: none;
+         }
+         #card-edit{
+            margin-top: 30px;
+          }
+    
+    }
+    @media only screen and (min-width: 800px) {
+
+        .content-container{
+            flex-direction: row;
+            justify-content:space-around;
+            
+        }
+        #card-info{
+          width: 40%;
+        }
+        #card-edit{
+           width: 50%;
+        }
+
+    }

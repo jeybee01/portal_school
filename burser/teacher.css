@@ -1,0 +1,187 @@
+*{
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+body {
+    width: 100%;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the side navigation */
+.sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    padding: 50px 0;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #f96332;
+    overflow-x: hidden;
+}
+
+
+/* Side navigation links */
+.sidenav a {
+    color: white;
+    /*height: 50px;*/
+    margin: 20px 0;
+    padding: 16px;
+    text-decoration: none;
+    display: block;
+}
+/*admin icon style*/
+.admin-icon{
+    font-size: 25px;
+    color:#f96332 ;
+    margin-right: 10px;
+}
+/*add icon style*/
+.add-icon{
+    font-size: 25px;
+    color:white ;
+    margin-right: 10px;
+}
+#user{
+    border-radius: 50px;
+    background-color: white;
+    color: #f96332;
+}
+/* Change color on hover */
+.sidenav a:hover {
+    background-color: #1c3b5f;
+    /*color: black;*/
+}
+
+.wrapper-container{
+  min-height:100vh;
+   margin-left: 250px;
+   background-color: whitesmoke;
+}
+
+/*nav bar*/
+#header{
+    padding: 30px;
+    color: white;
+    background-color: #1c3b5f;
+    margin-bottom: 20px;
+
+}
+/* Style the content */
+.content-container {
+    width: 350px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color:#fff;
+    /*border: 1px solid black;*/
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 10%), 0 6px 20px 0 rgba(0, 0, 0, 8%);
+
+}
+
+/*##########################################       form        ##################################################*/
+.content-container h1{
+    text-align: center;
+    font-size: 16px ;
+    margin: 10px 0;
+
+}
+.card{
+    margin: 10px 0;
+    padding: 5px;
+}
+label{
+    display: block;
+    margin: 5px 10px ;
+    font-size: 16px;
+}
+input[type=text],select,input[type=email],input[type=number],input[type=date],input[type=email]{
+    width: 90%;
+    height:40px;
+    padding: 10px;
+    outline: none;
+    border: 1px solid whitesmoke;
+    border-radius: 20px;
+}
+input:hover,input:active,select:hover,select:active{
+    border: 1px solid red;
+}
+#classbtn{
+     /*border: 1px solid black;*/
+    margin-top:  10px ;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+
+}
+button  {
+    width: 100px;
+    padding: 15px;
+    outline: none;
+    margin: 0 10px;
+    cursor: pointer;
+}
+button:hover,button:active{
+    background-color: #1c3b5f;
+    color: white;
+}
+/*##############################################################   end of form on add class ##################################################*/
+
+
+
+/*#########################################################  START OF TABLE ->MANAGE CLASS  ###########################################*/
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+td input{
+    padding: 5px;
+    outline: none;
+    border: 1px solid whitesmoke;
+    border-radius: 15px;
+}
+
+
+.menu-icon{
+    font-size: 2em;
+    float: right;
+}
+
+@media only screen and (max-width: 600px) {
+.sidenav{
+    display: none;
+}
+.wrapper-container{
+   margin-left: 0px;
+ }
+}
+@media only screen and (min-width:600px) {
+
+    .content-container {
+        width: 350px;
+    }
+    .menu-icon{
+        display: none;
+    }
+}
+ @media only screen and (min-width: 992px) {
+    .content-container {
+        width: 600px;
+    }
+    
+    } 
+
