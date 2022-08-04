@@ -206,12 +206,12 @@ $results = [];
 
 // get total score
 
- $sql = "SELECT SUM(first_test+second_test+exams) AS total,student_id,ROW_NUMBER() OVER(ORDER BY total DESC) position FROM results WHERE term = '$term_id' AND class = '$class_id'GROUP BY student_id";
+ $sql = "SELECT SUM(first_test+second_test+exams) AS total,student_id, position FROM results WHERE term = '$term_id' AND class = '$class_id'GROUP BY student_id";
  $run = $db->query($sql);
- if(!$run){
-  echo $db->error;
-  exit();
- }
+//  if(!$run){
+//   echo $db->error;
+//   exit();
+//  }
  while($row = $run->fetch_assoc())$student_result[$row['student_id']] = $row;
 
 
