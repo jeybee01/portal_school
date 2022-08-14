@@ -30,50 +30,26 @@ if(!isLoggedIn() or $_SESSION['type'] != '0'){
   <link rel="stylesheet" type="text/css" href="../css/main.css">
 
 </head>
-<style type="text/css">
-    .acolor{
-    color: #333;
-  }
-  .mr{
-    margin-right: 20px;
-  }
-  section .wrapper{
-    overflow: auto;
-  }
-  .center-text{
-    width: 60%;
-    margin: auto;
-  }
- 
-  .category-box{
-    display: flex;
-    justify-content: normal;
-    align-items: center;
-  }
-  .subject-box{
-    width: 20px;
-  }
-  .-mar20{
-    margin-left: 10px;
-  }
-  .back-box .btn{
-    position: fixed;
-    top: 65px;
-    left: 22%;
-    z-index: 999;
-  }
-</style>
+
 <body>
-<section>
+<section class="main-section">
   <!--side-nav start here -->
     <?php include '../includes/menu.php'?>
+  <!--side-nav End here -->
 
-  <!--side-nav end here -->
+  <!--small screen side-nav start here -->
+    <?php include '../includes/header.php'?>
+
+  <!--small screen side-nav end here -->
+
    <!--wrapper start here -->
   <div class="wrapper">
   <div class="main-nav">
     <nav class="navbar navbar-default">
   <div class="container-fluid">
+    <div class="navbar-header" id="menu-box">
+    <span class="navbar-brand" id="menu-btn" style="display: ;" onclick="openNav()">Menu</span>
+  </div>
     <div class="navbar-header">
       <a class="navbar-brand" href="#" style="color: #235a81;">Admin Dashboard</a>
     </div>
@@ -98,39 +74,50 @@ if(!isLoggedIn() or $_SESSION['type'] != '0'){
   <!--start here -->
 
    <section class="center-text well">
-    
     <div class="login-form box-center">           
-            <div id="card-info" class="row" style="margin: auto; text-align: center;">
-              <div id="passport" style="width: 50px; height: 50px; background: url('../image/profile_pics/<?=$image?>');">
-                 <form method="POST" action="upload.php" enctype="multipart/form-data" id="upload_form">
-                     <input type="file" name="upload" onchange="submit_form()">
-                 </form>
-              </div>
+   <ul class="tab">
+  <li><a href="#" class="tablinks " onclick="openCity(event, 'profile')">Profile</a></li>
+  <li><a href="#" class="tablinks" onclick="openCity(event, 'eProfile')">Edit Profile</a></li>
+  <li><a href="#" class="tablinks" onclick="openCity(event, 'password')">Change Password</a></li>
+</ul>
 
-              <div id="detail" style="margin: auto; text-align: center;" >
-                <p>Fullname:<?=$_SESSION['name']?></p>
+<div id="profile" class="tabcontent active-box">
+      <div class="row">
+   <h3 style="text-align: center;" >Admin Records</h3>
+      <div class="col-md-6">
+                   <div class="img-card" style="width: 100px; height: 100px;">
+                 <img src="../images/logo.jpg" alt="Profile-pics">
+            </div>
+      </div>
+     <div class="col-md-6">
+
+              <div class="info-card"  >
+                <p><strong> Fullname:</strong><br> <?=$_SESSION['name']?></p>
                 <?php
                   if($_SESSION['type'] == '2'){
-                  	?>
-                  <p>Registration Number:<?=$_SESSION['reg_num']?></p>
-                  <p>Class:<?=$class?></p>
+                    ?>
+                  <p><strong> Registration Number:</strong><br> <?=$_SESSION['reg_num']?></p>
+                  <p><strong> Class:<?=$class?></p>
                   <?php } ?>
                    <?php
                   if($_SESSION['type'] == '1'){
                     ?>
-                  <p>Id Number:<?=$_SESSION['reg_num']?></p>
-                  <p>Qualification:<?=$_SESSION['qualification']?></p>
+                  <p><strong> Id Number:</strong><br> <?=$_SESSION['reg_num']?></p>
+                  <p><strong> Qualification:</strong><br> <?=$_SESSION['qualification']?></p>
                   <?php } ?>
-                  <p>Email:<?=$_SESSION['email']?></p>
-                  <p>Phone Number:<?=$_SESSION['phone']?></p>
-                  <p>State:<?=$_SESSION['state']?></p>
-                  <p>Gender:<?=($_SESSION['gender'] == '1') ? 'Male' : 'Female'?></p>
+                  <p><strong> Email:</strong><br> <?=$_SESSION['email']?></p>
+                  <p><strong> Phone Number:</strong><br> <?=$_SESSION['phone']?></p>
+                  <p><strong> State:</strong><br> <?=$_SESSION['state']?></p>
+                  <p><strong> Gender:</strong><br> <?=($_SESSION['gender'] == '1') ? 'Male' : 'Female'?></p>
                   
               </div>
             </div>
-            <hr>
-          
-             <div id="card-edit" class="row">
+        
+      </div>
+</div>
+
+<div id="eProfile" class="tabcontent">
+              <div id="card-edit" class="row">
                  <form method="POST" action="profile.php">
                 <h3 style="text-align: center;" >Edit profile</h3>
 
@@ -205,31 +192,45 @@ if(!isLoggedIn() or $_SESSION['type'] != '0'){
                     <?php } ?>
         </div>
                  
+
+                <div class="form-group">
+                <button class="btn btn-primary" type="submit">Edit</button>
+                </div>
+              </form>
+            </div>
+</div>
+
+<div id="password" class="tabcontent">
+              <div id="card-edit" class="row">
+                <h3 style="text-align: center;" >Change Password</h3>
+
+                 <form method="POST" action="profile.php">
+
                  <div class="form-group">
                   <label for="old_password">old Password</label>
                   <input type="Password" name="old_password" class="form-control">
-                    	<?php
+                      <?php
                     if(isset($_SESSION['errors']['old_password'])){
-                    	?>
-                    	<p><?=$_SESSION['errors']['old_password']?></p>
+                      ?>
+                      <p><?=$_SESSION['errors']['old_password']?></p>
                     <?php } ?>
                 </div>
                  <div class="form-group">
                   <label for="new_password">New Password</label>
                   <input type="Password" name="new_password" class="form-control">
-                    	<?php
+                      <?php
                     if(isset($_SESSION['errors']['new_password'])){
-                    	?>
-                    	<p><?=$_SESSION['errors']['new_password']?></p>
+                      ?>
+                      <p><?=$_SESSION['errors']['new_password']?></p>
                     <?php } ?>
                 </div>
                  <div class="form-group">
                   <label for="confirm_password">Confirm Password</label>
                   <input type="Password" name="confirm_password" class="form-control">
-                    	<?php
+                      <?php
                     if(isset($_SESSION['errors']['confirm_password'])){
-                    	?>
-                    	<p><?=$_SESSION['errors']['confirm_password']?></p>
+                      ?>
+                      <p><?=$_SESSION['errors']['confirm_password']?></p>
                     <?php } ?>
                 </div>
                 <div class="form-group">
@@ -237,41 +238,25 @@ if(!isLoggedIn() or $_SESSION['type'] != '0'){
                 </div>
               </form>
             </div>
-     </div>
-   </section>
+</div>
+</div>
+</section>
        
   <!--container-fluid end here -->
-
-
   </div>
-
-
   </div>
   <!--wrapper end here -->
-
-  
 </section>
 <!--for table extra functionality -->
   <script src="../jquery/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.min.js"></script>
 <script src="../datatable/jquery.dataTables.min.js"></script>
 <script src="../datatable/dataTable.bootstrap.min.js"></script>
+<script src="../bootstrap/js/main.js"></script>
 <!-- generate datatable on our table -->
 
   <script>
 
- function submit_form(){
-            document.querySelector('#upload_form').submit();
-          }
-$(document).ready(function(){
-  //inialize datatable
-    $('#myTable').DataTable();
-
-    //hide alert
-    $(document).on('click', '.close', function(){
-      $('.alert').hide();
-    })
-});
 </script>
 </body>
 </html>

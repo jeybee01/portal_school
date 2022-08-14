@@ -13,48 +13,72 @@ $sessions = [];
  while($row = $run->fetch_assoc())$sessions[] = $row;
 ?>
 
+     
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/class.css">
-    <link rel="stylesheet" type="text/css" href="../icofont/icofont.css">
-     <link rel="stylesheet" type="text/css" href="../icofont/icofont.min.css">
-    <title>My Admin</title>
+  <title>portal</title>
+  <link rel="stylesheet" type="text/css" href="../datatable/dataTable.bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../bootstrap/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/main.css">
+
 </head>
 <body>
-  
-       <?php include '../includes/menu.php'?>  
+<section class="main-section">
+  <!--side-nav start here -->
+    <?php include '../includes/menu.php'?>
+
+  <!--side-nav end here -->
+      <!--small screen side-nav start here -->
+    <?php include '../includes/header.php'?>
+  <!--small screen side-nav end here -->
+
+  <!--wrapper start here -->
+  <div class="wrapper">
+  <div class="main-nav">
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+       <div class="navbar-header" id="menu-box">
+    <span class="navbar-brand" id="menu-btn" style="display: ;" onclick="openNav()">Menu</span>
+  </div>
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#" style="color: #235a81;">Admin Dashboard</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon " ></span style="color: #235a81;"> Welcome Admin!</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+  </div>
+
+  <div class="main-content">
+    <div class="container-fluid">
+  <!--container-fluid start here -->
+
     
     
      <div class="wrapper-container">
-      <div id="header">
-         <h1 style="text-align: center;">Dashboard</h1>
-         <i class="icofont-navigation-menu  menu-icon"></i>
-      </div>
-
-        <div class="content-container">
-           
+    <div class="table-responsive">           
             <?php
               if(count($sessions) == 0){
                 ?>
             <form method="POST" action="php/add_session.php" id="my_form">
                <h1> Add Session</h1>
                <hr>
-                <div class="card">
+                <div  class="form-group">
                     <label>Name</label>
-                    <input type="text" name="session" required style="border:1px solid #1c3b5f" id="my_input">
+                    <input type="text" class="form-control" name="session" required  id="my_input">
                 </div>
-                 <div class="card1" align="center">
-                <button type="submit">Add</button>
+                 <div class="form-group">
+                <button class="btn btn-primary" type="submit">Add</button>
                 </div>
            </form>
           <?php } else{        
                  ?>
               <h1>Manage Session</h1> 
-              <table>
+              <table class="table table-bordered table-striped" id="myTable">
                   <tr>
                     <th>S/n</th>
                     <th>Name</th>
@@ -80,10 +104,10 @@ $sessions = [];
  
                            if($next_term and $counter++ == 1){
                             ?>
-                            <a onclick="go_next()" style="color:blue;text-decoration: underline;cursor: pointer;">go to next term</a>
+                            <a class="btn btn-primary" onclick="go_next()" >Go to next term</a>
                            <?php }else if(!$next_term and $counter++ == 1){
                              ?>
-                             <a onclick="start_session('<?=$session['session_name']?>')" style="color:blue;text-decoration: underline;cursor: pointer;">Start new session</a>
+                             <a class="btn btn-primary" onclick="start_session('<?=$session['session_name']?>')" style="text-decoration: underline;">Start new session</a>
                          <?php }else{
                               ?>
                               <small style="color:red">Term Completed</small>
@@ -92,15 +116,15 @@ $sessions = [];
                      <?php
                        if($session['status'] == '0'){
                         ?>
-                        <td colspan="5"><a href="resumption_date.php?session=<?=$session['session_id'] + 1200?>&term=<?=$session['id'] + 1200?>">Release Result</a></td>
+                        <td colspan="5"><a class="btn btn-success" href="resumption_date.php?session=<?=$session['session_id'] + 1200?>&term=<?=$session['id'] + 1200?>">Release Result</a></td>
                        <?php }else{
                           $resumption=date_create($session['resumption_date']);
                            $resumption =  date_format($resumption,"d M Y");
                          ?>
                          <td><small style="color:green">Result Released</small></td>
                          <td><?=$resumption?></td>
-                         <td><a href="hold.php?session=<?=$session['session_id'] + 1200?>&term=<?=$session['id'] + 1200?>">Hold Result</a><td>
-                         <td><a href="resumption_date.php?session=<?=$session['session_id'] + 1200?>&term=<?=$session['id'] + 1200?>">Edit Resumption Date</a></td>
+                         <td><a class="btn btn-danger" href="hold.php?session=<?=$session['session_id'] + 1200?>&term=<?=$session['id'] + 1200?>">Hold Result</a><td>
+                         <td><a class="btn btn-info" href="resumption_date.php?session=<?=$session['session_id'] + 1200?>&term=<?=$session['id'] + 1200?>">Edit Resumption Date</a></td>
                        <?php } ?>
 
                </tr>
@@ -110,10 +134,39 @@ $sessions = [];
           
      </div>
 
-     
-     <script type="text/javascript">
-       
-                function go_next(){
+  <!--container-fluid end here -->
+
+
+  </div>
+  
+
+
+  </div>
+  <!--wrapper end here -->
+
+  
+</section>
+<!--for table extra functionality -->
+  <script src="../jquery/jquery.min.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../datatable/jquery.dataTables.min.js"></script>
+<script src="../datatable/dataTable.bootstrap.min.js"></script>
+<script src="../bootstrap/js/main.js"></script>
+<!-- generate datatable on our table -->
+
+  <script>
+$(document).ready(function(){
+  //inialize datatable
+    $('#myTable').DataTable();
+
+    //hide alert
+    $(document).on('click', '.close', function(){
+      $('.alert').hide();
+    })
+
+
+});
+function go_next(){
                    if(confirm('Are you sure you want to go to next term')){
                       window.location.href = 'php/go_to_next.php';
                    }
@@ -133,8 +186,6 @@ $sessions = [];
                 }
 
 
-                
-
-     </script>
-     </body>
+</script>
+</body>
 </html>

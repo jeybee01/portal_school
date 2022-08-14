@@ -55,34 +55,24 @@ $session_id = $_SESSION['sess_id'];
   <link rel="stylesheet" type="text/css" href="../css/main.css">
 
 </head>
-<style type="text/css">
-    .acolor{
-    color: #333;
-  }
-  .mr{
-    margin-right: 20px;
-  }
-  .session-box{
-    width: 25%;
-    margin: auto;
-    padding: 25px;
-  }
-  .session-box select{
-    margin-bottom: 10px;
-  }
-</style>
 <body>
-<section>
+<section class="main-section">
   <!--side-nav start here -->
     <?php include '../includes/menu.php'?>
 
   <!--side-nav end here -->
+      <!--small screen side-nav start here -->
+    <?php include '../includes/header.php'?>
+  <!--small screen side-nav end here -->
 
   <!--wrapper start here -->
   <div class="wrapper">
   <div class="main-nav">
     <nav class="navbar navbar-default">
   <div class="container-fluid">
+       <div class="navbar-header" id="menu-box">
+    <span class="navbar-brand" id="menu-btn" style="display: ;" onclick="openNav()">Menu</span>
+  </div>
     <div class="navbar-header">
       <a class="navbar-brand" href="#" style="color: #235a81;">Admin Dashboard</a>
     </div>
@@ -165,6 +155,8 @@ $session_id = $_SESSION['sess_id'];
 <script src="../bootstrap/js/bootstrap.min.js"></script>
 <script src="../datatable/jquery.dataTables.min.js"></script>
 <script src="../datatable/dataTable.bootstrap.min.js"></script>
+<script src="../bootstrap/js/main.js"></script>
+
 <!-- generate datatable on our table -->
 
   <script>

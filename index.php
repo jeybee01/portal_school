@@ -11,22 +11,23 @@
     <link rel="stylesheet" type="text/css" href="bootstrap/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 
-
-
-
 </head>
 <style type="text/css">
-
+  .login-section{
+       width: 40%;
+    height: 50%;
+    margin: 150px auto;
+  }
 </style>
 <body>
   <?php include 'includes/header1.php'; ?>
 
 
-<section class="center-text">
+<section class="center-text login-section">
     
-    <strong>Log In</strong>
+    <h2 style="text-align: center;"><strong>Log In</strong><h2/>
 
-    <div class="login-form box-center">
+    <div class="login-form box-center well">
       <?php 
 
         if(isset($_SESSION['prompt'])) {
@@ -59,8 +60,5 @@
   </section>
 
     <script type="text/javascript" src="jquery/jquery.min.js"></script>
-
-    <script>
-</script>
 </body>
 </html>

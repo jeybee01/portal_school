@@ -20,18 +20,9 @@
   <link rel="stylesheet" type="text/css" href="../bootstrap/css/font-awesome.css">
   <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../css/main.css">
-
 </head>
-<style type="text/css">
-    .acolor{
-    color: #333;
-  }
-  .mr{
-    margin-right: 20px;
-  }
-</style>
 <body>
-<section>
+<section class="main-section">
   <!--side-nav start here -->
     <?php include '../includes/menu.php'?>
 
@@ -42,6 +33,9 @@
   <div class="main-nav">
     <nav class="navbar navbar-default">
   <div class="container-fluid">
+       <div class="navbar-header" id="menu-box">
+    <span class="navbar-brand" id="menu-btn" style="display: ;" onclick="openNav()">Menu</span>
+  </div>
     <div class="navbar-header">
       <a class="navbar-brand" href="#" style="color: #235a81;">Admin Dashboard</a>
     </div>
@@ -161,6 +155,8 @@
 <script src="../bootstrap/js/bootstrap.min.js"></script>
 <script src="../datatable/jquery.dataTables.min.js"></script>
 <script src="../datatable/dataTable.bootstrap.min.js"></script>
+<script src="../bootstrap/js/main.js"></script>
+
 <!-- generate datatable on our table -->
 
   <script>

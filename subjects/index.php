@@ -20,26 +20,24 @@
   <link rel="stylesheet" type="text/css" href="../css/main.css">
 
 </head>
-<style type="text/css">
-    .acolor{
-    color: #333;
-  }
-  .mr{
-    margin-right: 20px;
-  }
-</style>
 <body>
-<section>
+<section class="main-section">
   <!--side-nav start here -->
     <?php include '../includes/menu.php'?>
 
   <!--side-nav end here -->
+      <!--small screen side-nav start here -->
+    <?php include '../includes/header.php'?>
+  <!--small screen side-nav end here -->
 
   <!--wrapper start here -->
   <div class="wrapper">
   <div class="main-nav">
     <nav class="navbar navbar-default">
   <div class="container-fluid">
+       <div class="navbar-header" id="menu-box">
+    <span class="navbar-brand" id="menu-btn" style="display: ;" onclick="openNav()">Menu</span>
+  </div>
     <div class="navbar-header">
       <a class="navbar-brand" href="#" style="color: #235a81;">Admin Dashboard</a>
     </div>
@@ -75,6 +73,7 @@
                 }else{
                   ?>
                   <table class="table table-bordered table-striped" id="myTable">
+
                   <tr>
                     <th>S/n</th>
                     <th>Name</th>
@@ -89,8 +88,8 @@
                  <td><?=$counter++?></td>
                  <td><?=$c['name']?></td>
                  <td><?=$c['short']?></td>
-                <td><a href="add_subject.php?subject=<?=$c['id'] + 1200?>">Edit</a></td>
-                <td><a onclick="delete_subject('<?=$c['id'] + 1200?>')" style="color: red;cursor: pointer;">Delete</a></td>
+                <td><a class="btn btn-info" href="add_subject.php?subject=<?=$c['id'] + 1200?>">Edit</a></td>
+                <td><a class="btn btn-danger" onclick="delete_subject('<?=$c['id'] + 1200?>')" >Delete</a></td>
                </tr>
                <?php } }?>
 </div>
@@ -112,6 +111,8 @@
 <script src="../bootstrap/js/bootstrap.min.js"></script>
 <script src="../datatable/jquery.dataTables.min.js"></script>
 <script src="../datatable/dataTable.bootstrap.min.js"></script>
+<script src="../bootstrap/js/main.js"></script>
+
 <!-- generate datatable on our table -->
 
   <script>
@@ -126,11 +127,6 @@ $(document).ready(function(){
 
 
 });
-  function delete_subject(x) {
-                   if(confirm('Are you sure you want to delete')){
-                      window.location.href = 'php/delete_subject.php?subject='+x;
-                   }
-                }
 
 </script>
 </body>

@@ -17,34 +17,24 @@
   <link rel="stylesheet" type="text/css" href="../css/main.css">
 
 </head>
-<style type="text/css">
-    .acolor{
-    color: #333;
-  }
-  .mr{
-    margin-right: 20px;
-  }
-  .session-box{
-    width: 25%;
-    margin: auto;
-    padding: 25px;
-  }
-  .session-box select{
-    margin-bottom: 10px;
-  }
-</style>
 <body>
-<section>
+<section class="main-section">
   <!--side-nav start here -->
     <?php include '../includes/menu.php'?>
 
   <!--side-nav end here -->
+      <!--small screen side-nav start here -->
+    <?php include '../includes/header.php'?>
+  <!--small screen side-nav end here -->
 
   <!--wrapper start here -->
   <div class="wrapper">
   <div class="main-nav">
     <nav class="navbar navbar-default">
   <div class="container-fluid">
+       <div class="navbar-header" id="menu-box">
+    <span class="navbar-brand" id="menu-btn" style="display: ;" onclick="openNav()">Menu</span>
+  </div>
     <div class="navbar-header">
       <a class="navbar-brand" href="#" style="color: #235a81;">Admin Dashboard</a>
     </div>
@@ -61,10 +51,8 @@
   <!--container-fluid start here -->
 
       <div class="container width-80">
-        <div class="row ">
-          <div class="back-box"><a class="btn btn-danger" href="../classes/view_classes.php"> << Back</a> </div>
-          
-         <h2>Students List and result</h2>
+        <div class="row ">          
+         <h2>Students Records</h2>
           
         </div>
       </div>
@@ -104,7 +92,7 @@
            <?php
               if(count($students) == 0){
                 ?>
-                <p>There is no student in your class yet</p>
+                <p style="text-align : center">There is no student in your class yet. Select an Active section Above</p>
               <?php 
 
                 }else{
@@ -132,8 +120,8 @@
                  <td><?=$student['email']?></td>
                  <td><?=$student['phone_number']?></td>
                  <td><?=$student['dob']?></td>
-                 <td><a onclick="remove_std('<?=$student["student"] + 1200?>')" style="color: blue;cursor: pointer;">Remove from Class</a></td>
-                 <td><a href="result.php?std=<?=$student['id'] + 1200?>&class=<?=$class_id + 1200?>">View Results</a></td>               
+                 <td><a class="btn btn-danger" onclick="remove_std('<?=$student["student"] + 1200?>')" >Remove from Class</a></td>
+                 <td><a class="btn btn-info" href="result.php?std=<?=$student['id'] + 1200?>&class=<?=$class_id + 1200?>">View Results</a></td>               
                </tr>
                <?php } }?>
            </table>
@@ -158,24 +146,11 @@
 <script src="../bootstrap/js/bootstrap.min.js"></script>
 <script src="../datatable/jquery.dataTables.min.js"></script>
 <script src="../datatable/dataTable.bootstrap.min.js"></script>
+<script src="../bootstrap/js/main.js"></script>
+
 <!-- generate datatable on our table -->
 
   <script>
-    function remove_std(x) {
-                   if(confirm('Are you sure you want to remove student')){
-                      window.location.href = "php/remove.php?std="+x;
-                   }
-                }
-     function delete_class(x) {
-                   if(confirm('Are you sure you want to delete')){
-                      window.location.href = 'php/delete_class.php?class='+x;
-                   }
-                }
-
-                 function show_category(cat){
-
-           window.location.href='view_classes.php?category='+cat
-        }
 $(document).ready(function(){
   //inialize datatable
     $('#myTable').DataTable();

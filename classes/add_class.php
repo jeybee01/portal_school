@@ -41,45 +41,15 @@
   <link rel="stylesheet" type="text/css" href="../css/main.css">
 
 </head>
-<style type="text/css">
-    .acolor{
-    color: #333;
-  }
-  .mr{
-    margin-right: 20px;
-  }
-  section .wrapper{
-    overflow: auto;
-  }
-  .center-text{
-    width: 60%;
-    margin: auto;
-  }
- 
-  .category-box{
-    display: flex;
-    justify-content: normal;
-    align-items: center;
-  }
-  .subject-box{
-    width: 20px;
-  }
-  .-mar20{
-    margin-left: 10px;
-  }
-  .back-box .btn{
-    position: fixed;
-    top: 65px;
-    left: 22%;
-    z-index: 999;
-  }
-</style>
 <body>
-<section>
+<section class="main-section">
   <!--side-nav start here -->
     <?php include '../includes/menu.php'?>
 
   <!--side-nav end here -->
+      <!--small screen side-nav start here -->
+    <?php include '../includes/header.php'?>
+  <!--small screen side-nav end here -->
    <!--wrapper start here -->
   <div class="wrapper">
   <div class="main-nav">

@@ -65,6 +65,9 @@
    $students = [];
   $sql = "SELECT class_students.student,users.* FROM class_students INNER JOIN users WHERE class_students.session = '$session_id' AND class_students.class = '$class' AND users.id = class_students.student";
  $run = $db->query($sql);
+ // $row = $run->fetch_assoc();
+ // echo $row['id'];
+ // exit();
  while($row = $run->fetch_assoc())$students[] = $row;
 
 $term_scores = [];
@@ -90,9 +93,5 @@ while($row = $run->fetch_assoc()){
    echo "<script>alert('error occored');window.history.back()</script>";
    exit;
  }
-
-
-
- 
 
  ?>

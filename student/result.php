@@ -1,35 +1,61 @@
 <?php include 'php/result.php' ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" type="text/css" href="../icofont/icofont.css">
-     <link rel="stylesheet" type="text/css" href="../icofont/icofont.min.css">
-     <link rel="stylesheet" type="text/css" href="../css/student_result.css">
-    <title>My Admin</title>
+  <title>portal</title>
+  <link rel="stylesheet" type="text/css" href="../datatable/dataTable.bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../bootstrap/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/main.css">
+
 </head>
 <body>
-  
+<section class="main-section">
+  <!--side-nav start here -->
     <?php include '../includes/menu.php'?>
-    
-    
-     <div class="wrapper-container">
+  <!--side-nav end here -->
+    <!--small screen side-nav start here -->
+    <?php include '../includes/header.php'?>
+  <!--small screen side-nav end here -->
 
-     	<div class="container">
-		<div class="title">
-			<h1><?=$school['name']?></h1>
-			<p>Motto:<?=$school['motto']?></p>
-			<small><?=$school['address']?>.</small>
-			<hr>
-			
-			<h3> STUDENT TERM RESULT</h3>
+  <!--wrapper start here -->
+  <div class="wrapper">
+  <div class="main-nav">
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+       <div class="navbar-header" id="menu-box">
+    <span class="navbar-brand" id="menu-btn" style="display: ;" onclick="openNav()">Menu</span>
+  </div>
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#" style="color: #235a81;">Admin Dashboard</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon " ></span style="color: #235a81;"> Welcome Admin!</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+  </div>
 
-			    <div align="center">
-        <form method="POST" action="php/change_2.php"> 
-             <select name="session" onchange="change_term(this)">
+  <div class="main-content">
+    <div class="container-fluid">
+  <!--container-fluid start here -->
+    
+  <div class="container">
+        <div class="row ">
+         <h2>Student Results</h2>
+        </div>
+      </div>
+  <!--start here -->
+
+    
+<div class="table-responsive">
+        <div class=" session-container">
+                    <div align="center" class="col-md-12 well">
+        <form method="POST" action="php/change_2.php">
+            <div class="form-group">
+              <select class="form-control" name="session" onchange="change_term(this)">
                 <?php
                   foreach($sessions as $s){
                      $selected = ($s['id'] == $session_id) ? 'selected' : '';
@@ -37,7 +63,10 @@
                    <option <?=$selected?> value="<?=$s['id'] + 1200?>"><?=$s['name']?></option>  
                   <?php } ?>
             </select>
-            <select name="term">
+            </div> 
+             
+             <div class="form-group">
+                   <select class="form-control" name="term">
                 <?php
                   foreach($terms as $s){
                      $selected = ($s['id'] == $term_id) ? 'selected' : '';
@@ -47,19 +76,41 @@
                   <input type="hidden" name="student" value="<?=$student_id + 1200?>">
                   <input type="hidden" name="class" value="<?=$class + 1200?>">
             </select>
-            <button>Change</button>
+             </div>
+             <div class="form-group">
+            <button class="btn btn-primary">Change</button>
+             </div>
+        
           </form>
   
 
         </div>
-			
-		</div>
-		<hr>
-		<div class="row">
+        </div>
+
+
+
+   <div class=" result-container">
+		<div class="result-title" style=" padding: 20px; margin-bottom: 10px">
+
+      <div class="img-card col-md-3 col-xs-3">
+        <img src="../images/logo.jpg" alt="logo" width="100" height="100">
+      </div>
+
+      <div class="name-address col-md-6 col-xs-6" style="text-align: center;">
+			<h1><?=$school['name']?></h1>
+      <small class="motto">Motto:<?=$school['motto']?></small>
+			<small><?=$school['address']?>.</small>
+    </div>
+       <div class="img-card col-md-3 col-xs-3">
+        <img src="../images/logo.jpg" alt="logo" width="100" height="100">
+      </div>
+
+    </div>
+		<div class="result-info">
 
 <?php if(!empty($_SESSION['msg'])){ ?>
 
-                    <p style="color:red;" align="center"><?=$_SESSION['msg']?></p>
+  <p style="color:red;" align="center"><?=$_SESSION['msg']?></p>
 
 <?php 
 
@@ -75,25 +126,24 @@
 
               if($_SESSION['type'] == '1' or $_SESSION['type'] == '0' or ($_SESSION['type'] == '2' and $term_status == '1')){
               	?>
-              	 <div class="table-head">
-				<div class="info">
+   <div class="row">
+				<div class="col-md-6 col-xs-6">
 					<p>Name: <strong><?=$student['name']?></strong></p>
 					<p>Admision No: <strong><?=$student['reg_num']?></strong></p>
 					<p>DOB: <strong><?=$dob?></strong></p>
 					<p>School resumes:  <strong><?=$resumption_date?></strong></p>
+        </div>
 
-				</div>
-				<div class="info">
+				<div class="col-md-6 col-xs-6">
 					<p>Class: <strong> <?=$class_obj->get('short')?></strong></p>
 					<p>Total Scores<strong><?=$total_scores?></strong></p>
 					<p>Total Average  <strong><?=$total_average?></strong></p>
 					<p>No Of pupil in Class: <strong> <?=$class_obj->get_num_of_students($session_id)?></strong></p>
 					<p>Position: <strong><?=$std_pos?></strong> </p>
-
-				</div>
-
-			</div>
-              	<table>
+        </div>
+   </div>
+  <div class="score-table">
+        <table class="table table-bordered">
 				<tr>
 					<!-- <th>S</th> -->
 					<th colspan="7" id="session_holder"><?=$session_name.' , '.$term_name?></th>
@@ -124,7 +174,9 @@
 					    </tr> 
                        <?php } ?>						
 			</table>
-			<table>
+    </div>
+    <div class="grade-table">
+			<table class="table table-bordered">
 				<tr>
 					<th>Marks</th>
 					<th>Grade</th>
@@ -156,12 +208,12 @@
 					<td>FAIL</td>
 				</tr>
 				
-			</table>
-			 <div class="table-footer">
+			</table> </div>
+		<div class="table-footer">
 
-				<div class="info">
+				<div class="behaviour-table">
 			    <form method="POST" action="php/behaviour.php">		
-				  <table>
+				  <table class="table table-bordered">
 				  	 <tr>
 				  	 	<th>Behavioural</th>
 				  	 	<th>5</th>
@@ -202,84 +254,123 @@
                      	?>
                      	<button>Save</button>
                      <?php } ?>
-				 </form> 
-
-				</div>
-           
-
-				<div class="info">
+				 </form> </div>
+         
+         <div class="row"> 
+				<div class="col-md-6 col-xs-6 remark-info">
 					<p><strong>Class Teacher Remark:</strong></p>    
 					<?php 
 
-                      if($_SESSION['type'] == '1'){
+                      if($_SESSION['type'] == '0'){
                              ?>
-                      <form method="POST" action="php/teachers_remark.php">
-                       		<textarea name="remark">
-                       			 <?=isset($remark['teacher']) ? $remark['teacher'] : ''?>
-                       		</textarea>
-                     <input type="hidden" name="term" value="<?=$term_id + 1200?>">
+
+             <form method="POST" action="php/teachers_remark.php">
+              <div class="form-group">
+             <textarea name="remark" class="form-control">
+              <?=isset($remark['teacher']) ? $remark['teacher'] : ''?>
+              </textarea>
+              <br>
+          <p class="sign"><strong>Sign/Date_________________</strong> </p>
+
+           </div>
+                      
+              <input type="hidden" name="term" value="<?=$term_id + 1200?>">
 				     <input type="hidden" name="session" value="<?=$session_id + 1200?>">
 				      <input type="hidden" name="student" value="<?=$student_id + 1200?>">
                      <input type="hidden" name="class" value="<?=$class + 1200?>"> <br>
-                     <input type="submit">
+                     <input class="btn btn-primary" type="submit">
            
-                       	</form>
+              </form>
                       <?php }else{
                       	 ?>
-                      	  <p><?=(!empty($remark['teacher']) ? $remark['teacher'] : 'No remark yet')?></p>
+
+                          <div class="form-group">
+             <textarea name="remark" class="form-control" disabled="">
+              <?=isset($remark['teacher']) ? $remark['teacher'] : ''?>
+              </textarea>
+              <br>
+          <p class="sign"><strong>Sign/Date_________________</strong> </p>
+
+           </div>
+                      	  <!-- <p><?=(!empty($remark['teacher']) ? $remark['teacher'] : 'No remark yet')?></p> -->
                       <?php } ?>                   
                        	                    
            
 					
-					<p class="sign"><strong>_________________</strong> </p>
-				</div>
+        </div>
 
-				<div class="info">
+				<div class="col-md-6 col-xs-6 remark-info">
 					<p><strong>Principal Remark: </strong></p>
 						<?php 
 
                       if($_SESSION['type'] == '0'){
                              ?>
                       <form method="POST" action="php/principal_remark.php">
-                       		<textarea name="remark">
+                        <div class="form-group">
+                       		<textarea name="remark" class="form-control">
                        			 <?=isset($remark['principal']) ? $remark['principal'] : ''?>
                        		</textarea>
+                          <br>
+          <p class="sign"><strong>Sign/Date_________________</strong> </p>
+
+                        </div>
                      <input type="hidden" name="term" value="<?=$term_id + 1200?>">
 				     <input type="hidden" name="session" value="<?=$session_id + 1200?>">
 				      <input type="hidden" name="student" value="<?=$student_id + 1200?>">
                      <input type="hidden" name="class" value="<?=$class + 1200?>"> <br>
-                     <input type="submit">
+                     <input class="btn btn-primary" type="submit">
            
                        	</form>
                       <?php }else{
                       	 ?>
-                      	 <p><?=(!empty($remark['principal']) ? $remark['principal'] : 'No remark yet')?></p>
+                        <div class="form-group">
+                          <textarea name="remark" class="form-control">
+                             <?=isset($remark['principal']) ? $remark['principal'] : ''?>
+                          </textarea>
+                          <br>
+          <p class="sign"><strong>Sign/Date_________________</strong> </p>
+
+                        </div>
+                      	 <!-- <p><?=(!empty($remark['principal']) ? $remark['principal'] : 'No remark yet')?></p> -->
                      <?php } ?>
 
-					<p class="sign"><strong>_________________</strong> </p>
-
-				</div>
+        </div>
+      </div>
+         </div>
 
 			</div>
               <?php }else{
               	 ?>
-              	 <p style="color:red" align="center">This Term Result has not been released</p>
+              	 <p style="color:red; text-align: center;" align="center">This Term Result has not been released</p>
                <?php } ?>
 	
-<?php }  ?>	
-			
-			
-		</div>
-		
-	</div>
-    
-          
+<?php }  ?>			    
      </div>
-</body>
- <script src="../jquery/jquery.min.js"></script>
-  <script type="text/javascript">
-  	
-    function change_term(x) {
+  <!--container-fluid end here -->
+  </div>
+
+</div>
+
+
+</div>
+<!--wrapper end here -->
+
+
+</section>
+<!--for table extra functionality -->
+<script src="../jquery/jquery.min.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../datatable/jquery.dataTables.min.js"></script>
+<script src="../datatable/dataTable.bootstrap.min.js"></script>
+<script src="../bootstrap/js/main.js"></script>
+
+<!-- generate datatable on our table -->
+
+<script>
+
+
+
+function change_term(x) {
        // body...
         self=x;
        event.preventDefault();
@@ -314,7 +405,6 @@
         }
 
      }
-
-
-  </script>
+</script>
+</body>
 </html>

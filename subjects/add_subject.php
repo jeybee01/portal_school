@@ -40,49 +40,23 @@
   <link rel="stylesheet" type="text/css" href="../css/main.css">
 
 </head>
-<style type="text/css">
-    .acolor{
-    color: #333;
-  }
-  .mr{
-    margin-right: 20px;
-  }
-  section .wrapper{
-    overflow: auto;
-  }
-  .center-text{
-    width: 60%;
-    margin: auto;
-  }
-  .category-box{
-    display: flex;
-    justify-content: normal;
-    align-items: center;
-  }
-  .subject-box{
-    width: 20px;
-  }
-  .-mar20{
-    margin-left: 10px;
-  }
-  .back-box .btn{
-    position: fixed;
-    top: 65px;
-    left: 22%;
-    z-index: 999;
-  }
-</style>
 <body>
-<section>
+<section class="main-section">
   <!--side-nav start here -->
     <?php include '../includes/menu.php'?>
 
   <!--side-nav end here -->
+      <!--small screen side-nav start here -->
+    <?php include '../includes/header.php'?>
+  <!--small screen side-nav end here -->
    <!--wrapper start here -->
   <div class="wrapper">
   <div class="main-nav">
     <nav class="navbar navbar-default">
   <div class="container-fluid">
+       <div class="navbar-header" id="menu-box">
+    <span class="navbar-brand" id="menu-btn" style="display: ;" onclick="openNav()">Menu</span>
+  </div>
     <div class="navbar-header">
       <a class="navbar-brand" href="#" style="color: #235a81;">Admin Dashboard</a>
     </div>
@@ -100,9 +74,9 @@
 
       <div class="container width-80">
         <div class="row ">
-          <div class="back-box"><a class="btn btn-danger" href="../teachers/"> << Back</a> </div>
-         <h2>Add Teachers</h2>
-         <h4>Teachers Records</h4>
+          <div class="back-box"><a class="btn btn-danger" href="../subjects/index.php"> << Back</a> </div>
+         <h2>Add Subjects</h2>
+         <h4>Subject Records</h4>
 
           
         </div>
@@ -192,6 +166,8 @@
 <script src="../bootstrap/js/bootstrap.min.js"></script>
 <script src="../datatable/jquery.dataTables.min.js"></script>
 <script src="../datatable/dataTable.bootstrap.min.js"></script>
+<script src="../bootstrap/js/main.js"></script>
+
 <!-- generate datatable on our table -->
 
   <script>

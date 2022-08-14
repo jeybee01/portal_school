@@ -51,6 +51,7 @@
        </ul>
   </li>
   </span> 
+
   <li class=" dropdown list-group-item"><span class="fa fa-users"></span>
     <button  style="border:none;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">CLASSES
     <span class="caret"></span></button>
@@ -98,13 +99,59 @@
        <a href="<?=ROOT_URL?>burser/index.php"id="<?=($_SESSION['location'] == 'burser') ? 'user' : ''?>">Burser</a> -->
   <?php }else if($_SESSION['type'] == '1'){
   	 ?>
-       <a href="<?=ROOT_URL?>student/index.php"id="<?=($_SESSION['location'] == 'classes') ? 'user' : ''?>">Class</a>
-      <a href="<?=ROOT_URL?>subjects/view_teachers_subject.php" id="<?=($_SESSION['location'] == 'subjects') ? 'user' : ''?>">Subjects</a>
+      <h2 style="text-align: center;">SCHOOL PORTAL</h2>
+
+      <ul class="list-group">
+<li class=" dropdown list-group-item"><span class="fa fa-users"></span>
+    <button  style="border:none;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">CLASSES
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu dropdown-menu-right">
+      <li>
+     <a href="<?=ROOT_URL?>student/index.php"id="<?=($_SESSION['location'] == 'classes') ? 'user' : ''?>">Manage Students</a>
+      </li>
+      <li class="divider"></li>
+     <li>
+     <a href="<?=ROOT_URL?>student/add_students.php"id="<?=($_SESSION['location'] == 'classes') ? 'user' : ''?>">Add Student</a>
+      </li></ul>
+     
+  </li>
+
+  <li class=" dropdown list-group-item"><span class="fa fa-user  mr">
+  <a href="<?=ROOT_URL?>subjects/view_teachers_subject.php" id="<?=($_SESSION['location'] == 'subjects') ? 'user' : ''?>"> Subjects</a></span>
+ </li>
+ <li class=" dropdown list-group-item"><span class="fa fa-power-off mr">
+      <a href="<?=ROOT_URL?>logout.php" class="acolor"> Log-out</a></span>
+
+   </li>
+
+  </ul>
+
      <?php }else if($_SESSION['type'] == '2'){
   	 ?>
-      <a href="<?=ROOT_URL?>students/index.php"id="<?=($_SESSION['location'] == 'home') ? 'user' : ''?>">Home</a>
-      <a href="<?=ROOT_URL?>students/class_mates.php"id="<?=($_SESSION['location'] == 'class_mates') ? 'user' : ''?>">Class Mates</a>
-      <a href="<?=ROOT_URL?>student/result.php" id="<?=($_SESSION['location'] == 'result') ? 'user' : ''?>">Results</a>
+
+<h2 style="text-align: center;">SCHOOL PORTAL</h2>
+
+<ul class="list-group">
+<li class=" dropdown list-group-item"><span class="fa fa-home mr">
+<a class="acolor" href="<?=ROOT_URL?>students/index.php"id="<?=($_SESSION['location'] == 'home') ? 'user' : ''?>">Home</a>
+</li>
+
+<li class=" dropdown list-group-item"><span class="fa fa-users mr">
+<a  class="acolor" href="<?=ROOT_URL?>students/class_mates.php"id="<?=($_SESSION['location'] == 'class_mates') ? 'user' : ''?>">Class Mates</a>
+</li>
+
+<li class=" dropdown list-group-item"><span class="fa fa-briefcase mr">
+<a class="acolor" href="<?=ROOT_URL?>student/result.php" id="<?=($_SESSION['location'] == 'result') ? 'user' : ''?>">Results</a>
+
+</li>
+  <li class=" dropdown list-group-item"><span class="fa fa-power-off mr"></span>
+      <a href="<?=ROOT_URL?>logout.php" class="acolor">Log-out</a>
+
+   </li>
+
+</ul>
+
+
   <?php }else if($_SESSION['type'] == '3'){
       ?>
       <a href="<?=ROOT_URL?>fees/index.php"id="<?=($_SESSION['location'] == 'burser') ? 'user' : ''?>">Class</a>

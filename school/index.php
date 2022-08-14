@@ -20,97 +20,25 @@
   <link rel="stylesheet" type="text/css" href="../css/main.css">
 
 </head>
-<style type="text/css">
-
-     .acolor{
-    color: #333;
-  }
-  .mr{
-    margin-right: 20px;
-  }
-  section .wrapper{
-    overflow: auto;
-  }
-  .center-text{
-    width: 60%;
-    margin: auto;
-  }
- 
-  .category-box{
-    display: flex;
-    justify-content: normal;
-    align-items: center;
-  }
-  .subject-box{
-    width: 20px;
-  }
-  .-mar20{
-    margin-left: 10px;
-  }
-  .back-box .btn{
-    position: fixed;
-    top: 65px;
-    left: 22%;
-    z-index: 999;
-  }
-ul.tab {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #fff;
-}
-
-ul.tab li {float: left;}
-
-ul.tab li a {
-    display: inline-block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    transition: 0.3s;
-    font-size: 17px;
-}
-
-ul.tab li a:hover {background-color: #ddd;}
-
-ul.tab li a:focus, .active {background-color: #ccc;}
-
-.tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
-}
-.tabcontent {
-    -webkit-animation: fadeEffect 1s;
-    animation: fadeEffect 1s; /* Fading effect takes 1 second */
-}
-
-@-webkit-keyframes fadeEffect {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
-@keyframes fadeEffect {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-</style>
 <body>
-  <section>
+  <section class="main-section">
   <!--side-nav start here -->
     <?php include '../includes/menu.php'?>
 
   <!--side-nav end here -->
+      <!--small screen side-nav start here -->
+    <?php include '../includes/header.php'?>
+  <!--small screen side-nav end here -->
    <!--wrapper start here -->
   <div class="wrapper">
   <div class="main-nav">
     <nav class="navbar navbar-default">
   <div class="container-fluid">
+       <div class="navbar-header" id="menu-box">
+    <span class="navbar-brand" id="menu-btn" style="display: ;" onclick="openNav()">Menu</span>
+  </div>
     <div class="navbar-header">
+      <a href="#" class="navbar-brand" id="menu-btn"><span onclick="openNav()">Menu</span></a>
       <a class="navbar-brand" href="#" style="color: #235a81;">Admin Dashboard</a>
     </div>
     <ul class="nav navbar-nav navbar-right">
@@ -120,6 +48,11 @@ ul.tab li a:focus, .active {background-color: #ccc;}
   </div>
 </nav>
   </div>
+  <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <?php include '../includes/menu.php'?>
+  
+</div>
 
   <div class="main-content">
     <div class="container-fluid">
@@ -135,9 +68,7 @@ ul.tab li a:focus, .active {background-color: #ccc;}
       </div>
   <!--start here -->
 
-    
-    
-  <section class="center-text well">
+      <section class="center-text well">
   
     <div class="login-form box-center">
 
@@ -152,7 +83,7 @@ ul.tab li a:focus, .active {background-color: #ccc;}
         <div class="content-container">
         <div style="color: red;" align="center"><?=(isset($_SESSION['errors']['message']) ? $_SESSION['errors']['message'] : '' )?></div> 
 
-        <div id="school" class="tabcontent">
+        <div id="school" class="tabcontent active-box">
         <form method="POST" action="add.php">
            <h1>Add School Details</h1>
            <hr>
@@ -239,6 +170,8 @@ ul.tab li a:focus, .active {background-color: #ccc;}
 <script src="../bootstrap/js/bootstrap.min.js"></script>
 <script src="../datatable/jquery.dataTables.min.js"></script>
 <script src="../datatable/dataTable.bootstrap.min.js"></script>
+<script src="../bootstrap/js/main.js"></script>
+
 <!-- generate datatable on our table -->
 
   <script>
@@ -251,26 +184,6 @@ $(document).ready(function(){
       $('.alert').hide();
     })
 });
- function openTab(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tabcontent.length; i++) {
-        tablinks[i].classList.remove("active");
-    }
-
-    // Show the current tab, and add an "active" class to the link that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.classList.add("active");
-}
        <?php unset($_SESSION['errors']);?>
 
 </script>

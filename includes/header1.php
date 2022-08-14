@@ -36,8 +36,11 @@
 
 		<?php 
 		} else {
-			echo "<span class='not-logged'>Not logged in.</span>";
-        }
+			?>
+			 <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="not-logged"></span>Not logged in.</a></li>
+    </ul>
+       <?php }
 		?>
     </div>
 </div>
